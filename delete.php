@@ -15,6 +15,8 @@ try {
   $pdo = new PDO(DSN, DB_USER, DB_PASS);
   $stmt = $pdo->prepare('delete from board.posts where id = ?');
   $stmt->execute([$_POST['id']]);
+  $stmt2 = $pdo->prepare('delete from board.posts where parentId = ?');
+  $stmt2->execute([$_POST['id']]);
   $info = "削除に成功しました。";
 } catch (\Exception $e) {
   $info = "削除に失敗しました。";

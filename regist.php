@@ -15,14 +15,18 @@ $info = '';
 
 //画像の処理
 //元ファイル名の先頭にアップロード日時を加える
-$newfilename = date("YmdHis")."-".$_FILES['fileUpload']['name'];
-//ファイルの保存先
-$upload = './image/' . $newfilename;
-//アップロードが正しく完了したかチェック
-if(move_uploaded_file($_FILES['fileUpload']['tmp_name'], $upload)){
-  $info = 'アップロード完了';
-}else{
-  $info = 'アップロード失敗';
+if (isset($_FILES['fileUpload']['name']) && $_FILES['fileUpload']['name'] != '') {
+  $newfilename = date("YmdHis")."-".$_FILES['fileUpload']['name'];
+  //ファイルの保存先
+  $upload = './image/' . $newfilename;
+  //アップロードが正しく完了したかチェック
+  if(move_uploaded_file($_FILES['fileUpload']['tmp_name'], $upload)){
+    $info = 'アップロード完了';
+  }else{
+    $info = 'アップロード失敗';
+  }
+} else {
+  $upload = NULL;
 }
 
 //messageが140文字より大きい時、140文字に切る

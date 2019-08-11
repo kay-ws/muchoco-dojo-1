@@ -39,10 +39,12 @@
           <p><img src="<?= $row['imagePath'] ?>"></p>
          <button type="submit" name="commentPost">コメントする</button>
         </form>
+        <?php if ($_SESSION['email'] == $row['email']) : ?> 
         <form action="delete.php" method="post">
           <input type='hidden' name="id" value="<?= $row['id'] ?>">
           <button type="submit" name="deletePost">削除</button>
         </form>
+        <?php endif; ?>
 <?php
         try {
           $stmt2 = $pdo->prepare('select * from posts where parentId = ? order by id DESC');
@@ -60,10 +62,12 @@
           <p><img src="<?= $row2['imagePath'] ?>"></p>
             <button type="submit" name="commentPost">コメントする</button>
           </form>
+          <?php if ($_SESSION['email'] == $row2['email']) : ?>
           <form action="delete.php" method="post">
             <input type='hidden' name="id" value="<?= $row2['id'] ?>">
             <button type="submit" name="deletePost">削除</button>
           </form>
+          <?php endif; ?>
 <?php
         }
 ?>        
