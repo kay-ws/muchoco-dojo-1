@@ -1,0 +1,82 @@
+-- MySQL dump 10.13  Distrib 5.7.24, for Linux (x86_64)
+--
+-- Host: localhost    Database: board
+-- ------------------------------------------------------
+-- Server version	5.7.24-0ubuntu0.18.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `posts`
+--
+
+DROP TABLE IF EXISTS `posts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parentId` int(11) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `imagePath` varchar(255) DEFAULT NULL,
+  `message` varchar(420) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `posts`
+--
+
+LOCK TABLES `posts` WRITE;
+/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+INSERT INTO `posts` VALUES (32,0,'test1@example.com',NULL,'メッセージだけのテスト','2019-08-11 03:14:04'),(33,0,'test1@example.com','./image/20190811031901-otaku_otagei_woman.png','','2019-08-11 03:19:01'),(34,0,'test1@example.com','./image/20190811031950-sports_hydration_bag_man.png','メッセージとイラスト両方','2019-08-11 03:19:50'),(35,0,'test2@example.com',NULL,'違うユーザ投稿','2019-08-11 03:21:25'),(36,35,'test1@example.com',NULL,'違うユーザ投稿','2019-08-11 03:22:04'),(37,0,'test1@example.com',NULL,'違うユーザ投稿２','2019-08-11 03:22:30'),(38,37,'test2@example.com',NULL,'違うユーザ投稿２','2019-08-11 03:22:47'),(39,0,'test1@example.com',NULL,'コメント10件','2019-08-11 03:24:45'),(40,39,'test1@example.com',NULL,'コメント１','2019-08-11 03:24:56'),(41,39,'test1@example.com',NULL,'コメント２','2019-08-11 03:25:04'),(42,39,'test1@example.com',NULL,'コメント３','2019-08-11 03:25:14'),(43,39,'test1@example.com',NULL,'コメント４','2019-08-11 03:25:23'),(44,39,'test1@example.com',NULL,'コメント５','2019-08-11 03:25:37'),(45,39,'test1@example.com',NULL,'コメント６','2019-08-11 03:25:52'),(46,39,'test1@example.com',NULL,'コメント７','2019-08-11 03:26:03'),(47,39,'test1@example.com',NULL,'コメント８','2019-08-11 03:26:14'),(48,39,'test1@example.com',NULL,'コメント９','2019-08-11 03:26:39'),(49,39,'test1@example.com',NULL,'コメント１０','2019-08-11 03:26:54'),(50,39,'test1@example.com',NULL,'コメント１１','2019-08-11 03:27:07'),(51,0,'test1@example.com',NULL,'文字１４０６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０','2019-08-11 03:32:26'),(52,0,'test1@example.com',NULL,'文字１４０超え８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０','2019-08-11 03:33:28'),(53,0,'test1@example.com',NULL,'投稿９','2019-08-11 03:35:59'),(54,0,'test1@example.com',NULL,'投稿１０','2019-08-11 03:36:08'),(55,0,'test1@example.com',NULL,'投稿１１（メッセージだけ）','2019-08-11 03:36:25');
+/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'test1@example.com','$2y$10$5twocfgGwrkH3hkBHzTqmOCLgOF2yXkf1kAG/5fVUVNCA89IbI8Ji','2019-08-10 13:56:34'),(2,'test2@example.com','$2y$10$36YS9RKd3PbEU6gHXWOUIuUV11AsqmNXght5UMYBxSMMiBCdaNMSm','2019-08-10 14:06:01');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-08-11  3:42:28
